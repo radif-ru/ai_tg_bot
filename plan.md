@@ -317,7 +317,7 @@
 
 ## Задача 9. Middleware логирования и глобальный error handler
 
-- **Статус:** ToDo
+- **Статус:** Progress
 - **Этап roadmap:** 8
 - **Зависит от:** Задача 8
 - **Связанные документы:** `docs/architecture.md` §3.7, §5, `docs/instructions.md` §5–§6, `docs/roadmap.md` «Этап 8».
@@ -421,6 +421,6 @@
 | 6 | Entrypoint и команды `/start`, `/help`           | 5    | Done   | 5          |
 | 7 | Основной обработчик текста → LLM                 | 6    | Done   | 6          |
 | 8 | Команды `/models`, `/model`, `/prompt`           | 7    | Done   | 7          |
-| 9 | Middleware логирования + глобальный error handler| 8    | ToDo   | 8          |
+| 9 | Middleware логирования + глобальный error handler| 8    | Progress | 8          |
 |10 | README, полировка, чек-лист приёмки MVP          | 9    | ToDo   | 9          |
 |11 | (Опционально) Доработки после MVP                | 10   | ToDo   | 10         |
