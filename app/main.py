@@ -11,8 +11,10 @@ from aiogram.types import BotCommand
 
 from app.config import Settings
 from app.handlers import commands as commands_handlers
+from app.handlers import errors as errors_handlers
 from app.handlers import messages as messages_handlers
 from app.logging_config import setup_logging
+from app.middlewares.logging_mw import LoggingMiddleware
 from app.services.llm import OllamaClient
 from app.services.model_registry import UserSettingsRegistry
 
@@ -51,8 +53,11 @@ async def main() -> None:
     dispatcher["llm_client"] = llm_client
     dispatcher["registry"] = registry
 
+    dispatcher.update.middleware(LoggingMiddleware())
+
     dispatcher.include_router(commands_handlers.router)
     dispatcher.include_router(messages_handlers.router)
+    dispatcher.include_router(errors_handlers.router)
 
     await bot.set_my_commands(
         [
