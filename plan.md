@@ -238,7 +238,7 @@
 
 ## Задача 7. Основной обработчик текста → LLM
 
-- **Статус:** Progress
+- **Статус:** Done
 - **Этап roadmap:** 6
 - **Зависит от:** Задача 6
 - **Связанные документы:** `docs/architecture.md` §4–§5, `docs/commands.md` §«Произвольный текст», §«Ограничения ввода», `docs/testing.md` §3.4, `docs/roadmap.md` «Этап 6».
@@ -419,7 +419,7 @@
 | 4 | LLM-клиент (`OllamaClient`) и исключения         | 3    | Done   | 3          |
 | 5 | Registry для модели и системного промпта         | 4    | Done   | 4          |
 | 6 | Entrypoint и команды `/start`, `/help`           | 5    | Done   | 5          |
-| 7 | Основной обработчик текста → LLM                 | 6    | Progress | 6          |
+| 7 | Основной обработчик текста → LLM                 | 6    | Done   | 6          |
 | 8 | Команды `/models`, `/model`, `/prompt`           | 7    | ToDo   | 7          |
 | 9 | Middleware логирования + глобальный error handler| 8    | ToDo   | 8          |
 |10 | README, полировка, чек-лист приёмки MVP          | 9    | ToDo   | 9          |
