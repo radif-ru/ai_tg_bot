@@ -1,0 +1,46 @@
+Чек-лист приёмки MVP (docs/mvp.md §5)
+======================================
+
+Состояние на момент завершения Задачи 10.
+
+[+] 1. Запуск: `python -m app` собирает Bot+Dispatcher и доходит до "Bot started"
+       (покрыто smoke-тестом `tests/test_main.py::test_main_logs_bot_started_and_closes`).
+       Для реального запуска требуется заполненный .env с TELEGRAM_BOT_TOKEN и
+       запущенный `ollama serve`. Ручная проверка на стороне пользователя.
+
+[+] 2. /start отвечает приветственным сообщением со списком команд
+       (tests/handlers/test_commands.py::test_start_greets_user).
+
+[~] 3. Текст → осмысленный ответ от LLM — ручная проверка в Telegram
+       (unit-тест покрывает успешный путь с моком:
+       tests/handlers/test_messages.py::test_success_path_returns_llm_response).
+
+[~] 4. /models и /model <name> — unit-тесты зелёные
+       (tests/handlers/test_commands.py::test_models_lists_all_and_marks_active,
+       test_model_switches_to_valid_name). Эффект на следующий запрос — ручная
+       проверка в реальном Telegram.
+
+[+] 5. При LLMUnavailable бот не падает, отвечает сообщением, пишет ERROR в лог
+       (tests/handlers/test_messages.py::test_unavailable_answers_about_downtime_and_errors).
+
+[+] 6. Параллельность: aiogram 3 + asyncio, ни один handler не блокирует event loop,
+       OllamaClient — async. Никаких time.sleep / requests в коде.
+
+[+] 7. Логи: RotatingFileHandler создаёт файл и каталог
+       (tests/test_logging_config.py::test_setup_logging_creates_file_and_dir).
+       LLM-клиент и handler текста логируют user/chat/model/len_in/len_out/dur_ms/status.
+
+[+] 8. Секреты: `.env` в `.gitignore`, в репозитории только `.env.example` с
+       заглушкой. Git log не содержит реальных токенов
+       (проверено `git log -p | grep TELEGRAM_BOT_TOKEN=`).
+
+[+] 9. Тесты: `pytest -q` — 59 проходит (покрыт LLM-клиент, /start, обработчик
+       текста, команды /models/model/prompt, middleware, error handler, registry,
+       config, logging, utils).
+
+[+] 10. README содержит разделы: О проекте, Требования, Установка, Настройка,
+        Запуск, Команды бота, Тесты, Ограничения MVP.
+
+Легенда:
+[+] — автоматически верифицируемо (unit-тесты / смоук).
+[~] — покрыто тестом с моком, нужна ручная проверка в реальном Telegram.
