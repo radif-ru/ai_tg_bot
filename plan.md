@@ -123,7 +123,7 @@
 
 ## Задача 4. LLM-клиент (`OllamaClient`) и исключения
 
-- **Статус:** ToDo
+- **Статус:** Progress
 - **Этап roadmap:** 3
 - **Зависит от:** Задача 3
 - **Связанные документы:** `docs/architecture.md` §3.4, §5, `docs/stack.md` §3, `docs/instructions.md` §4–§5, `docs/testing.md` §3.2, `docs/roadmap.md` «Этап 3».
@@ -416,7 +416,7 @@
 | 1 | Подготовка окружения и зависимостей              | 0    | Done   | —          |
 | 2 | Скелет репозитория и базовые файлы               | 1    | Done   | 1          |
 | 3 | Конфигурация (`Settings`) и логирование          | 2    | Done   | 2          |
-| 4 | LLM-клиент (`OllamaClient`) и исключения         | 3    | ToDo   | 3          |
+| 4 | LLM-клиент (`OllamaClient`) и исключения         | 3    | Progress | 3          |
 | 5 | Registry для модели и системного промпта         | 4    | ToDo   | 4          |
 | 6 | Entrypoint и команды `/start`, `/help`           | 5    | ToDo   | 5          |
 | 7 | Основной обработчик текста → LLM                 | 6    | ToDo   | 6          |
