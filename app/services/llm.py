@@ -1,7 +1,7 @@
 """Клиент локальной LLM (Ollama) и иерархия ошибок.
 
 Реализация поверх `ollama.AsyncClient` (async) — выбор зафиксирован здесь,
-альтернатива — прямые HTTP-запросы через `httpx.AsyncClient` (см. docs/stack.md §3).
+альтернатива — прямые HTTP-запросы через `httpx.AsyncClient` (см. _docs/stack.md §3).
 
 Модуль не должен импортировать `aiogram` — это сервис-слой, изолированный от Telegram.
 """

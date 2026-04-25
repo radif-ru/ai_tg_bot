@@ -14,7 +14,7 @@
 1. Задачи берутся строго сверху вниз: нельзя брать задачу, если предыдущая не `Done`.
 2. В статусе `Progress` одновременно может находиться **только одна** задача.
 3. При смене статуса обновляется поле `Статус` у задачи и фиксируется коммитом `chore(plan): ...`.
-4. Подробный процесс выполнения одной задачи описан в `process.md`.
+4. Подробный процесс выполнения одной задачи описан в `_board/process.md`.
 
 ---
 
@@ -23,7 +23,7 @@
 - **Статус:** Done
 - **Этап roadmap:** 0
 - **Зависит от:** —
-- **Связанные документы:** `docs/instructions.md` §11, `docs/stack.md` §1–§3, §10, `docs/roadmap.md` «Этап 0».
+- **Связанные документы:** `_docs/instructions.md` §11, `_docs/stack.md` §1–§3, §10, `_docs/roadmap.md` «Этап 0».
 
 ### Описание
 
@@ -52,14 +52,14 @@
 - **Статус:** Done
 - **Этап roadmap:** 1
 - **Зависит от:** Задача 1
-- **Связанные документы:** `docs/project-structure.md`, `docs/stack.md` §8–§9, `docs/roadmap.md` «Этап 1».
+- **Связанные документы:** `_docs/project-structure.md`, `_docs/stack.md` §8–§9, `_docs/roadmap.md` «Этап 1».
 
 ### Описание
 
-Сформировать целевую структуру репозитория согласно `docs/project-structure.md`:
+Сформировать целевую структуру репозитория согласно `_docs/project-structure.md`:
 
-1. Создать `.gitignore` со всеми блоками из `docs/project-structure.md` §«Что должно попасть в `.gitignore`» (Python, Tests/tools, IDE, Logs, Secrets).
-2. Создать `.env.example` с полным набором переменных из `docs/stack.md` §9 (`TELEGRAM_BOT_TOKEN`, `OLLAMA_BASE_URL`, `OLLAMA_DEFAULT_MODEL`, `OLLAMA_AVAILABLE_MODELS`, `OLLAMA_TIMEOUT`, `SYSTEM_PROMPT`, `LOG_LEVEL`, `LOG_FILE`) с комментариями-подсказками.
+1. Создать `.gitignore` со всеми блоками из `_docs/project-structure.md` §«Что должно попасть в `.gitignore`» (Python, Tests/tools, IDE, Logs, Secrets).
+2. Создать `.env.example` с полным набором переменных из `_docs/stack.md` §9 (`TELEGRAM_BOT_TOKEN`, `OLLAMA_BASE_URL`, `OLLAMA_DEFAULT_MODEL`, `OLLAMA_AVAILABLE_MODELS`, `OLLAMA_TIMEOUT`, `SYSTEM_PROMPT`, `LOG_LEVEL`, `LOG_FILE`) с комментариями-подсказками.
 3. Создать `requirements.txt` минимум с:
    - `aiogram>=3.4,<4`
    - `ollama>=0.3`
@@ -75,10 +75,10 @@
 
 ### Definition of Done
 
-- Структура каталогов полностью соответствует `docs/project-structure.md` (включая тесты, зеркалирующие `app/`).
+- Структура каталогов полностью соответствует `_docs/project-structure.md` (включая тесты, зеркалирующие `app/`).
 - `pip install -r requirements.txt` в активированном `.venv` проходит без ошибок.
 - `git status` показывает только добавленные файлы, реальный `.env` отсутствует.
-- `.env.example` содержит **все** 8 переменных, указанных в `docs/stack.md` §9.
+- `.env.example` содержит **все** 8 переменных, указанных в `_docs/stack.md` §9.
 - `python -c "import app"` не падает (пакет импортируется).
 
 ---
@@ -88,7 +88,7 @@
 - **Статус:** Done
 - **Этап roadmap:** 2
 - **Зависит от:** Задача 2
-- **Связанные документы:** `docs/architecture.md` §3.2–§3.3, `docs/stack.md` §4–§5, `docs/instructions.md` §6–§7, `docs/testing.md` §3.1, `docs/roadmap.md` «Этап 2».
+- **Связанные документы:** `_docs/architecture.md` §3.2–§3.3, `_docs/stack.md` §4–§5, `_docs/instructions.md` §6–§7, `_docs/testing.md` §3.1, `_docs/roadmap.md` «Этап 2».
 
 ### Описание
 
@@ -126,7 +126,7 @@
 - **Статус:** Done
 - **Этап roadmap:** 3
 - **Зависит от:** Задача 3
-- **Связанные документы:** `docs/architecture.md` §3.4, §5, `docs/stack.md` §3, `docs/instructions.md` §4–§5, `docs/testing.md` §3.2, `docs/roadmap.md` «Этап 3».
+- **Связанные документы:** `_docs/architecture.md` §3.4, §5, `_docs/stack.md` §3, `_docs/instructions.md` §4–§5, `_docs/testing.md` §3.2, `_docs/roadmap.md` «Этап 3».
 
 ### Описание
 
@@ -167,7 +167,7 @@
 - **Статус:** Done
 - **Этап roadmap:** 4
 - **Зависит от:** Задача 4
-- **Связанные документы:** `docs/architecture.md` §3.5, `docs/commands.md` §«/model», §«/prompt», `docs/testing.md` §3.3, `docs/roadmap.md` «Этап 4».
+- **Связанные документы:** `_docs/architecture.md` §3.5, `_docs/commands.md` §«/model», §«/prompt», `_docs/testing.md` §3.3, `_docs/roadmap.md` «Этап 4».
 
 ### Описание
 
@@ -200,7 +200,7 @@
 - **Статус:** Done
 - **Этап roadmap:** 5
 - **Зависит от:** Задача 5
-- **Связанные документы:** `docs/architecture.md` §3.1, §3.6, `docs/commands.md` §«/start», §«/help», §«BotFather / setMyCommands», `docs/stack.md` §2, `docs/roadmap.md` «Этап 5».
+- **Связанные документы:** `_docs/architecture.md` §3.1, §3.6, `_docs/commands.md` §«/start», §«/help», §«BotFather / setMyCommands», `_docs/stack.md` §2, `_docs/roadmap.md` «Этап 5».
 
 ### Описание
 
@@ -213,13 +213,13 @@
      - Создать `llm_client = OllamaClient(...)`, `registry = UserSettingsRegistry(...)`.
      - Прокинуть в `dp["settings"]`, `dp["llm_client"]`, `dp["registry"]` (DI через `workflow_data`).
      - Подключить роутеры из `app/handlers/commands.py` (на этом этапе — только `/start`, `/help`).
-     - Вызвать `await bot.set_my_commands([...])` со списком из `docs/commands.md` §«BotFather / setMyCommands».
+     - Вызвать `await bot.set_my_commands([...])` со списком из `_docs/commands.md` §«BotFather / setMyCommands».
      - Логировать «Bot started».
      - `await dp.start_polling(bot)` в `try/finally` с `await llm_client.close()` и `await bot.session.close()`.
 2. `app/__main__.py`: `asyncio.run(main())`.
 3. `app/handlers/commands.py`:
    - Роутер `router = Router(name="commands")`.
-   - Хендлер `/start` — возвращает шаблон из `docs/commands.md` §«/start».
+   - Хендлер `/start` — возвращает шаблон из `_docs/commands.md` §«/start».
    - Хендлер `/help` — возвращает расширенную справку, включая текущую модель (`registry.get_model(user_id)`) и обрезанный до 200 символов текущий системный промпт.
 4. Тесты:
    - `tests/handlers/test_commands.py`: `/start` → `message.answer` вызван с текстом, содержащим «Привет».
@@ -241,14 +241,14 @@
 - **Статус:** Done
 - **Этап roadmap:** 6
 - **Зависит от:** Задача 6
-- **Связанные документы:** `docs/architecture.md` §4–§5, `docs/commands.md` §«Произвольный текст», §«Ограничения ввода», `docs/testing.md` §3.4, `docs/roadmap.md` «Этап 6».
+- **Связанные документы:** `_docs/architecture.md` §4–§5, `_docs/commands.md` §«Произвольный текст», §«Ограничения ввода», `_docs/testing.md` §3.4, `_docs/roadmap.md` «Этап 6».
 
 ### Описание
 
 1. `app/handlers/messages.py`:
    - Роутер `router = Router(name="messages")`.
    - Хендлер `F.text & ~F.text.startswith("/")`.
-   - Алгоритм (см. `docs/commands.md` §«Произвольный текст»):
+   - Алгоритм (см. `_docs/commands.md` §«Произвольный текст»):
      1. `await message.bot.send_chat_action(chat_id, ChatAction.TYPING)`.
      2. `model = registry.get_model(user_id)`.
      3. `system = registry.get_prompt(user_id)`.
@@ -283,7 +283,7 @@
 - **Статус:** Done
 - **Этап roadmap:** 7
 - **Зависит от:** Задача 7
-- **Связанные документы:** `docs/commands.md` §«/models», §«/model», §«/prompt», `docs/testing.md` §3.4, `docs/roadmap.md` «Этап 7».
+- **Связанные документы:** `_docs/commands.md` §«/models», §«/model», §«/prompt», `_docs/testing.md` §3.4, `_docs/roadmap.md` «Этап 7».
 
 ### Описание
 
@@ -320,7 +320,7 @@
 - **Статус:** Done
 - **Этап roadmap:** 8
 - **Зависит от:** Задача 8
-- **Связанные документы:** `docs/architecture.md` §3.7, §5, `docs/instructions.md` §5–§6, `docs/roadmap.md` «Этап 8».
+- **Связанные документы:** `_docs/architecture.md` §3.7, §5, `_docs/instructions.md` §5–§6, `_docs/roadmap.md` «Этап 8».
 
 ### Описание
 
@@ -356,7 +356,7 @@
 - **Статус:** Done
 - **Этап roadmap:** 9
 - **Зависит от:** Задача 9
-- **Связанные документы:** `docs/mvp.md` §5 «Критерии приёмки», `docs/instructions.md` §2, `docs/testing.md` §5–§6, `docs/roadmap.md` «Этап 9».
+- **Связанные документы:** `_docs/mvp.md` §5 «Критерии приёмки», `_docs/instructions.md` §2, `_docs/testing.md` §5–§6, `_docs/roadmap.md` «Этап 9».
 
 ### Описание
 
@@ -366,12 +366,12 @@
    - **Установка** (клон, venv, `pip install -r requirements.txt`).
    - **Настройка** (скопировать `.env.example` в `.env`, описание каждой переменной).
    - **Запуск** (`ollama serve`, `python -m app`).
-   - **Команды бота** (таблица из `docs/commands.md`).
+   - **Команды бота** (таблица из `_docs/commands.md`).
    - **Тесты** (`pytest -q`, опционально покрытие).
-   - **Ограничения MVP** (короткий список из `docs/mvp.md` §3).
+   - **Ограничения MVP** (короткий список из `_docs/mvp.md` §3).
 2. Проверить `.gitignore`: `git status` не показывает `.env`, `logs/`, `.venv/`, `__pycache__/`.
 3. Прогнать `pytest -q` — должно быть зелёно. Если установлен `pytest-cov`, прогнать `pytest --cov=app` и убедиться, что покрытие ≥ 70% (`services/` и `handlers/` ≥ 85%).
-4. Прогнать чек-лист из `docs/mvp.md` §5 «Критерии приёмки» — все 10 пунктов отметить как выполненные (зафиксировать результаты в финальном коммите или в `progress.txt`).
+4. Прогнать чек-лист из `_docs/mvp.md` §5 «Критерии приёмки» — все 10 пунктов отметить как выполненные (зафиксировать результаты в финальном коммите или в `progress.txt`).
 5. Убедиться, что в истории коммитов нет реального токена (`git log -p | grep -i "TELEGRAM_BOT_TOKEN="` возвращает только примеры из `.env.example`).
 
 ### Definition of Done
@@ -379,7 +379,7 @@
 - `README.md` содержит все 7 разделов выше, инструкция воспроизводима на чистой машине.
 - `git status` чист после всех правок.
 - `pytest -q` зелёный.
-- Все 10 пунктов `docs/mvp.md` §5 отмечены как выполненные (ручной чек-лист с пометками пройден).
+- Все 10 пунктов `_docs/mvp.md` §5 отмечены как выполненные (ручной чек-лист с пометками пройден).
 - В репозитории нет реального `.env` и нет утечек токена в истории.
 - Финальный коммит тэгирован (опционально) как `mvp-ready`.
 
@@ -390,7 +390,7 @@
 - **Статус:** ToDo
 - **Этап roadmap:** 10
 - **Зависит от:** Задача 10
-- **Связанные документы:** `docs/roadmap.md` «Этап 10», `docs/commands.md` §«/reset», `docs/stack.md` §11.
+- **Связанные документы:** `_docs/roadmap.md` «Этап 10», `_docs/commands.md` §«/reset», `_docs/stack.md` §11.
 
 ### Описание
 
@@ -405,7 +405,7 @@
 ### Definition of Done
 
 - Для каждой выбранной подзадачи: код + тесты + обновлённый `README.md`, `pytest -q` зелёный, ручная проверка.
-- Документация `docs/` обновлена, если меняется поведение (`commands.md`, `architecture.md`, `stack.md`).
+- Документация `_docs/` обновлена, если меняется поведение (`commands.md`, `architecture.md`, `stack.md`).
 
 ---
 

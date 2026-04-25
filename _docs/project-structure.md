@@ -12,7 +12,7 @@ ai_tg_bot/
 ├── requirements-dev.txt      # dev-зависимости (pytest, ruff, mypy...)  — опционально
 ├── pyproject.toml            # конфиг ruff / pytest / mypy — опционально
 │
-├── docs/                     # проектная документация (этот каталог)
+├── _docs/                     # проектная документация (этот каталог)
 │   ├── README.md
 │   ├── architecture.md
 │   ├── mvp.md

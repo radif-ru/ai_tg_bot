@@ -1,6 +1,6 @@
 """Handler произвольного текста: пользовательское сообщение → LLM → ответ.
 
-См. `docs/commands.md` §«Произвольный текст» и `docs/architecture.md` §4–§5.
+См. `_docs/commands.md` §«Произвольный текст» и `_docs/architecture.md` §4–§5.
 """
 
 from __future__ import annotations

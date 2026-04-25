@@ -1,6 +1,6 @@
 """Handler'ы команд бота (/start, /help, /models, /model, /prompt).
 
-См. `docs/commands.md` — спецификация поведения каждой команды.
+См. `_docs/commands.md` — спецификация поведения каждой команды.
 """
 
 from __future__ import annotations
