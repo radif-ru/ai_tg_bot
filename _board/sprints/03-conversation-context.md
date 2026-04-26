@@ -225,7 +225,7 @@
 
 ### Задача 3.1. Handler текста: контекст, логирование, LLM.chat, обновление истории
 
-- **Статус:** Progress
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** L
 - **Зависит от:** Задача 1.2, 2.1, 2.2
@@ -271,12 +271,12 @@
 
 #### Definition of Done
 
-- [ ] В `app/main.py` создаются и прокидываются `ConversationStore` и `Summarizer`.
-- [ ] `handle_text` использует `llm_client.chat(messages, …)` с `messages = [system] + history`; никаких прямых вызовов `generate(...)` в handler'е текста не остаётся.
-- [ ] В лог перед каждым LLM-запросом пишется строка с `messages=N` и `tokens=K`; при `LOG_LLM_CONTEXT=True` — также `payload=<JSON>`.
-- [ ] Суммаризация запускается при достижении порога; ошибка суммаризации не валит ответ пользователю (есть тест).
-- [ ] `pytest tests/handlers/ -q` зелёный, ≥ 4 новых теста в `test_messages.py`; старые сценарии (timeout, unavailable, bad response, LLMError) — обновлены под новый API и зелёные.
-- [ ] Ручная проверка в Telegram: «Меня зовут Радиф. Запомни.» → следующая реплика «Как меня зовут?» — бот отвечает корректно. После `/reset` (см. задачу 4.1) — забывает.
+- [x] В `app/main.py` создаются и прокидываются `ConversationStore` и `Summarizer`.
+- [x] `handle_text` использует `llm_client.chat(messages, …)` с `messages = [system] + history`; прямых вызовов `generate(...)` в этом handler'е нет.
+- [x] В лог перед каждым LLM-запросом пишется строка с `messages=N` и `tokens=K`; при `LOG_LLM_CONTEXT=True` — также `payload=<JSON>`.
+- [x] Суммаризация запускается при достижении порога; ошибка суммаризации не валит ответ пользователю (тест `test_summarizer_failure_does_not_break_response`).
+- [x] `pytest tests/handlers/ -q` зелёный; +7 новых тестов в `test_messages.py` (success_path с chat, history updated, второе сообщение видит предыдущую пару, log payload при True/False, summarizer на пороге/ниже/с ошибкой); старые сценарии (timeout, unavailable, bad response, LLMError, split, too_long input, dur_ms log) обновлены под chat-API и зелёные.
+- [ ] Ручная проверка в Telegram — вынесена в задачу 5.5 (финальная приёмка), т.к. требует реального Ollama + Telegram + команды `/reset` (задача 4.1).
 
 ---
 
@@ -531,7 +531,7 @@
 | 1.2 | `ConversationStore` — in-memory история per-user                      | high      | M     | Done   | Задача 1.1                  |
 | 2.1 | `OllamaClient.chat(messages, model)` поверх Ollama chat-API           | high      | M     | Done   | Задача 1.2                  |
 | 2.2 | `Summarizer` — сжатие старой части диалога через LLM                  | high      | S     | Done   | Задача 2.1                  |
-| 3.1 | Handler текста: контекст, логирование, `chat`, обновление истории     | high      | L     | Progress | Задачи 1.2, 2.1, 2.2      |
+| 3.1 | Handler текста: контекст, логирование, `chat`, обновление истории     | high      | L     | Done   | Задачи 1.2, 2.1, 2.2        |
 | 4.1 | Команда `/reset` и обновление справочных текстов                      | medium    | S     | ToDo   | Задача 3.1                  |
 | 5.1 | Обновить `README.md`: «История диалога», «Суммаризация»               | high      | S     | ToDo   | Задачи 3.1, 4.1             |
 | 5.2 | Обновить `_docs/architecture.md` и `_docs/project-structure.md`       | high      | M     | ToDo   | Задача 3.1                  |
@@ -547,3 +547,4 @@
 - **2026-04-26** — закрыта задача 1.2: добавлен `app/services/conversation.py::ConversationStore` (in-memory история per-user, FIFO-обрезка, `replace_with_summary`, `clear`) + 12 unit-тестов (коммит `feat(services): add ConversationStore for in-memory per-user dialog history`).
 - **2026-04-26** — закрыта задача 2.1: в `OllamaClient` добавлен метод `chat(messages, model)` с идентичным маппингом ошибок `generate()`; функция уровня модуля `estimate_tokens(value)`; +11 тестов (коммит `feat(llm): add OllamaClient.chat(messages) and estimate_tokens helper`).
 - **2026-04-26** — закрыта задача 2.2: добавлен `app/services/summarizer.py::Summarizer` (обёртка над `OllamaClient.chat` для сжатия истории) + 5 unit-тестов (коммит `feat(services): add Summarizer for compressing dialog history via LLM`).
+- **2026-04-26** — закрыта задача 3.1: handler текста переведён на `OllamaClient.chat` с контекстом `[system] + history`, добавлены обязательное логирование контекста (`messages=N tokens=K [payload=JSON]`) и условная суммаризация с защитой от падения; `app/main.py` прокидывает `ConversationStore` и `Summarizer` в DI; +7 новых тестов (коммит `feat(handlers): wire conversation history, context logging and summarization into text handler`).
