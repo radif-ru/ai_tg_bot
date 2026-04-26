@@ -55,7 +55,7 @@
 
 ### Задача 1.1. Расширить `Settings` и `.env.example` параметрами истории
 
-- **Статус:** Progress
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** S
 - **Зависит от:** —
@@ -84,11 +84,11 @@
 
 #### Definition of Done
 
-- [ ] `Settings` принимает все 4 новых поля; default'ы соответствуют описанию.
-- [ ] Валидатор отбрасывает `threshold > max` и непозитивные значения.
-- [ ] `.env.example` содержит секцию `# --- Conversation context ---` со всеми 4 переменными и комментариями.
-- [ ] `pytest tests/test_config.py -q` зелёный, добавлены тесты под новые валидации.
-- [ ] `python -c "from app.config import Settings"` не падает (синтаксис ОК).
+- [x] `Settings` принимает все 4 новых поля; default'ы соответствуют описанию.
+- [x] Валидатор отбрасывает `threshold > max` и непозитивные значения.
+- [x] `.env.example` содержит секцию `# --- Conversation context ---` со всеми 4 переменными и комментариями.
+- [x] `pytest tests/test_config.py -q` зелёный, добавлены тесты под новые валидации.
+- [x] `python -c "from app.config import Settings"` не падает (синтаксис ОК).
 
 ---
 
@@ -527,7 +527,7 @@
 
 | #   | Задача                                                                | Приоритет | Объём | Статус | Зависит от                  |
 |-----|-----------------------------------------------------------------------|:---------:|:-----:|:------:|:---------------------------:|
-| 1.1 | Расширить `Settings` и `.env.example` параметрами истории             | high      | S     | Progress | —                         |
+| 1.1 | Расширить `Settings` и `.env.example` параметрами истории             | high      | S     | Done   | —                           |
 | 1.2 | `ConversationStore` — in-memory история per-user                      | high      | M     | ToDo   | Задача 1.1                  |
 | 2.1 | `OllamaClient.chat(messages, model)` поверх Ollama chat-API           | high      | M     | ToDo   | Задача 1.2                  |
 | 2.2 | `Summarizer` — сжатие старой части диалога через LLM                  | high      | S     | ToDo   | Задача 2.1                  |
@@ -542,3 +542,5 @@
 ## 11. История изменений спринта
 
 - **2026-04-26** — спринт открыт, ветка `feature/conversation-context` создана от `main`.
+- **2026-04-26** — усилены правила тестирования (обязательные unit-тесты для кода в `app/`, зелёный `pytest -q` перед коммитом) — `docs(rules): require unit tests for new code in app/ and green pytest before commit`.
+- **2026-04-26** — закрыта задача 1.1: расширен `Settings` полями `history_max_messages`, `history_summary_threshold`, `summarization_prompt`, `log_llm_context` и валидатором лимитов; `.env.example` дополнен секцией «Conversation context» (коммит `feat(config): add conversation history settings (max, summary threshold, prompt, log flag)`).
