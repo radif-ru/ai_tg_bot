@@ -72,6 +72,10 @@ async def main() -> None:
             BotCommand(command="models", description="Список моделей"),
             BotCommand(command="model", description="Выбрать модель"),
             BotCommand(command="prompt", description="Задать системный промпт"),
+            BotCommand(
+                command="reset",
+                description="Очистить контекст и сбросить настройки",
+            ),
         ]
     )
 
