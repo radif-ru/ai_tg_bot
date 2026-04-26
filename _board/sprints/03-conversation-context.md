@@ -286,7 +286,7 @@
 
 ### Задача 4.1. Команда `/reset` и обновление справочных текстов
 
-- **Статус:** ToDo
+- **Статус:** Progress
 - **Приоритет:** medium
 - **Объём:** S
 - **Зависит от:** Задача 3.1
@@ -532,7 +532,7 @@
 | 2.1 | `OllamaClient.chat(messages, model)` поверх Ollama chat-API           | high      | M     | Done   | Задача 1.2                  |
 | 2.2 | `Summarizer` — сжатие старой части диалога через LLM                  | high      | S     | Done   | Задача 2.1                  |
 | 3.1 | Handler текста: контекст, логирование, `chat`, обновление истории     | high      | L     | Done   | Задачи 1.2, 2.1, 2.2        |
-| 4.1 | Команда `/reset` и обновление справочных текстов                      | medium    | S     | ToDo   | Задача 3.1                  |
+| 4.1 | Команда `/reset` и обновление справочных текстов                      | medium    | S     | Progress | Задача 3.1                |
 | 5.1 | Обновить `README.md`: «История диалога», «Суммаризация»               | high      | S     | ToDo   | Задачи 3.1, 4.1             |
 | 5.2 | Обновить `_docs/architecture.md` и `_docs/project-structure.md`       | high      | M     | ToDo   | Задача 3.1                  |
 | 5.3 | Обновить `_docs/requirements.md` (FR-3, CON-1, новые FR)              | high      | M     | ToDo   | Задачи 3.1, 4.1             |
