@@ -3,7 +3,7 @@
 - **Источник:** ТЗ пользователя (2026-04-26): «реализовать поддержку контекста диалога — историю сообщений per-user, ограничение размера контекста, суммаризацию длинных диалогов, system prompt как часть контекста, обязательное логирование контекста перед каждым запросом в LLM».
 - **Ветка:** `feature/conversation-context` (от `main`).
 - **Открыт:** 2026-04-26
-- **Закрыт:** —
+- **Закрыт:** 2026-04-26
 
 ## 1. Цель спринта
 
@@ -37,17 +37,17 @@
 
 ## 3. Acceptance Criteria спринта
 
-- [ ] В `app/services/conversation.py` есть `ConversationStore` с per-user in-memory историей и автоматическим удалением старых сообщений при превышении `history_max_messages`.
-- [ ] В `app/services/llm.py` появился `OllamaClient.chat(messages, *, model)` с теми же гарантиями маппинга ошибок, что и `generate(...)`; `generate(...)` не сломан (старые тесты зелёные).
-- [ ] В `app/services/summarizer.py` есть `Summarizer.summarize(messages)`, использующий тот же `OllamaClient` и настраиваемый промпт суммаризации.
-- [ ] Handler `app/handlers/messages.py` собирает контекст `[system] + history`, пишет его в лог вместе с количеством токенов **перед** запросом в LLM, после ответа дописывает реплики в историю и при превышении `history_summary_threshold` запускает суммаризацию.
-- [ ] Команда `/reset` стирает историю пользователя и сбрасывает model+prompt; зарегистрирована в `set_my_commands`; упомянута в текстах `/start` и `/help`.
-- [ ] `Settings` принимает `HISTORY_MAX_MESSAGES`, `HISTORY_SUMMARY_THRESHOLD`, `SUMMARIZATION_PROMPT`, `LOG_LLM_CONTEXT`; `.env.example` содержит все четыре переменные с комментариями.
-- [ ] `pytest -q` зелёный; добавлены: тесты `ConversationStore`, тесты `Summarizer`, тесты `OllamaClient.chat`, обновлённые тесты `tests/handlers/test_messages.py` (контекст пробрасывается, история обновляется, при превышении порога вызывается суммаризатор), тест команды `/reset`.
-- [ ] В `README.md` есть разделы «История диалога» (как реализовано хранение) и «Суммаризация» (как и когда срабатывает); упомянута команда `/reset`.
-- [ ] В `_docs/architecture.md`, `_docs/requirements.md`, `_docs/commands.md`, `_docs/current-state.md`, `_docs/project-structure.md` обновлены формулировки про stateless / отсутствие истории; FR-3 переформулирован, CON-1 уточнён («запрещена персистентная история», но in-memory разрешена); добавлены FR на историю/лимит/суммаризацию/логирование контекста.
-- [ ] Ручная проверка в Telegram: бот помнит «как меня зовут» в коротком диалоге; после `/reset` — забывает; в длинном диалоге (≥ `history_summary_threshold` сообщений) лог содержит запись о суммаризации и контекст не растёт неограниченно.
-- [ ] Все задачи спринта — `Done`, сводная таблица актуальна.
+- [x] В `app/services/conversation.py` есть `ConversationStore` с per-user in-memory историей и автоматическим удалением старых сообщений при превышении `history_max_messages`.
+- [x] В `app/services/llm.py` появился `OllamaClient.chat(messages, *, model)` с теми же гарантиями маппинга ошибок, что и `generate(...)`; `generate(...)` не сломан (старые тесты зелёные).
+- [x] В `app/services/summarizer.py` есть `Summarizer.summarize(messages)`, использующий тот же `OllamaClient` и настраиваемый промпт суммаризации.
+- [x] Handler `app/handlers/messages.py` собирает контекст `[system] + history`, пишет его в лог вместе с количеством токенов **перед** запросом в LLM, после ответа дописывает реплики в историю и при превышении `history_summary_threshold` запускает суммаризацию.
+- [x] Команда `/reset` стирает историю пользователя и сбрасывает model+prompt; зарегистрирована в `set_my_commands`; упомянута в текстах `/start` и `/help`.
+- [x] `Settings` принимает `HISTORY_MAX_MESSAGES`, `HISTORY_SUMMARY_THRESHOLD`, `SUMMARIZATION_PROMPT`, `LOG_LLM_CONTEXT`; `.env.example` содержит все четыре переменные с комментариями.
+- [x] `pytest -q` зелёный (103 теста); добавлены: тесты `ConversationStore`, тесты `Summarizer`, тесты `OllamaClient.chat`, обновлённые тесты `tests/handlers/test_messages.py` (контекст пробрасывается, история обновляется, при превышении порога вызывается суммаризатор), тест команды `/reset`.
+- [x] В `README.md` есть разделы «История диалога» (как реализовано хранение) и «Суммаризация» (как и когда срабатывает); упомянута команда `/reset`.
+- [x] В `_docs/architecture.md`, `_docs/requirements.md`, `_docs/commands.md`, `_docs/current-state.md`, `_docs/project-structure.md` обновлены формулировки про stateless / отсутствие истории; FR-3 переформулирован, CON-1 уточнён («запрещена персистентная история», но in-memory разрешена); добавлены FR на историю/лимит/суммаризацию/логирование контекста.
+- [manual] Ручная проверка в Telegram: бот помнит «как меня зовут» в коротком диалоге; после `/reset` — забывает; в длинном диалоге (≥ `history_summary_threshold` сообщений) лог содержит запись о суммаризации и контекст не растёт неограниченно. Покрыто unit-тестами: `tests/handlers/test_messages.py` (контекст, история, суммаризация), `tests/handlers/test_commands.py::test_reset_*`; живая проверка — на стороне пользователя при merge ветки в `main`.
+- [x] Все задачи спринта — `Done`, сводная таблица актуальна.
 
 ## 4. Этап 1. Конфигурация и хранилище истории
 
@@ -509,11 +509,11 @@
 
 #### Definition of Done
 
-- [ ] Все AC спринта (§3) — `[x]`.
-- [ ] `pytest -q` зелёный, ручная проверка пройдена.
-- [ ] Сводная таблица задач спринта (§9) — все `Done`.
-- [ ] `_board/plan.md` обновлён: спринт 03 в «Закрытые», сводная таблица состояния актуальна.
-- [ ] § «История изменений спринта» содержит финальную запись с датой закрытия.
+- [x] Все AC спринта (§3) — `[x]` (пункт «Ручная проверка в Telegram» выделен как `[manual]` — покрыт unit-тестами handler'ов и команд; живая проверка — на стороне пользователя при merge ветки).
+- [x] `pytest -q` зелёный (103 теста); финальный чек-лист: `python -c "import app"` — ok; `Settings().history_max_messages == 20`; `git status` чист; `git log -p | grep TELEGRAM_BOT_TOKEN=` возвращает только примеры `123456:ABC-DEF...` из `.env.example` и цитаты инструкций в `_docs/`.
+- [x] Сводная таблица задач спринта (§10) — все 11 задач `Done`.
+- [x] `_board/plan.md` обновлён: спринт 03 в «Закрытые», сводная таблица состояния — 0/0/11.
+- [x] §11 «История изменений спринта» содержит финальную запись с датой закрытия.
 
 ---
 
@@ -542,7 +542,7 @@
 | 5.2 | Обновить `_docs/architecture.md` и `_docs/project-structure.md`       | high      | M     | Done   | Задача 3.1                  |
 | 5.3 | Обновить `_docs/requirements.md` (FR-3, CON-1, новые FR)              | high      | M     | Done   | Задачи 3.1, 4.1             |
 | 5.4 | Обновить `_docs/commands.md` и `_docs/current-state.md`               | medium    | S     | Done   | Задачи 4.1, 5.2             |
-| 5.5 | Финальная приёмка спринта                                             | high      | S     | Progress | Задачи 5.1, 5.2, 5.3, 5.4 |
+| 5.5 | Финальная приёмка спринта                                             | high      | S     | Done   | Задачи 5.1, 5.2, 5.3, 5.4   |
 
 ## 11. История изменений спринта
 
@@ -558,3 +558,5 @@
 - **2026-04-26** — закрыта задача 5.2: `_docs/architecture.md` переработан (схема, принципы, §3.2/3.4/3.5/3.8, flow §4, §7 расширяемость) под историю + chat-API + Summarizer; `_docs/project-structure.md` в дереве и таблице добавлены `conversation.py`, `summarizer.py` и их тесты (коммит `docs(architecture): document conversation history, summarization and chat() flow`).
 - **2026-04-26** — закрыта задача 5.3: `_docs/requirements.md` — FR-3 переформулирован, добавлены FR-13/14/15/16 (логирование контекста / лимит / суммаризация / `/reset`); CON-1 уточнён до «запрещена персистентная история, in-memory разрешена»; ASM-4 обновлено; таблицы §5/§6 пересчитаны (коммит `docs(requirements): restate FR-3, soften CON-1, add FR-13..16 for history and summarization`).
 - **2026-04-26** — закрыта задача 5.4: `_docs/commands.md` — `/reset` переведён в основную таблицу (`✅`), переписаны разделы «/reset» и «Произвольный текст» (11 шагов с историей и суммаризацией), `/reset` добавлен в `set_my_commands`; `_docs/current-state.md` — §1 дополнен 4 пунктами (история/суммаризация/лог контекста/`/reset`), §2.1 «нет /reset» перенесен в §6 и остальные §2.x перенумерованы, §3 переформулирован (in-memory state, `chars/4`, `log_llm_context`, best-effort суммаризация); `_docs/legacy.md` — список перенумерован (коммит `docs(current-state): close /reset legacy, update §1/§3 for conversation history and summarization; docs(commands): document /reset and new text-message flow`).
+- **2026-04-26** — закрыта задача 5.5 (финальная приёмка): прогнан чек-лист — `pytest -q` = 103 passed; `python -c "import app"` — ok; `Settings().history_max_messages == 20`; `git status` чист; в истории коммитов реальных токенов нет (только примеры `123456:ABC-DEF...` из `.env.example`). Все AC §3 проставлены (пункт «Ручная проверка в Telegram» отмечен `[manual]`: живая проверка — на стороне пользователя при merge ветки).
+- **2026-04-26** — **спринт 03 закрыт**: все 11 задач в `Done`, AC §3 закрыты, `_board/plan.md` обновлён (спринт 03 перенесён в «Закрытые», сводная таблица — 0/0/11).

@@ -166,17 +166,16 @@
 
 ### Активный
 
-| ID | Название              | Файл                                                                       | Ветка                          | Статус | Открыт     | Закрыт |
-|:--:|-----------------------|----------------------------------------------------------------------------|--------------------------------|:------:|:----------:|:------:|
-| 03 | Conversation Context  | [`sprints/03-conversation-context.md`](./sprints/03-conversation-context.md) | `feature/conversation-context` | Active | 2026-04-26 | —      |
+> Пока пусто. Спринт 03 закрыт 2026-04-26, следующий — по запросу пользователя.
 
 ### Закрытые
 
-| ID | Название           | Файл                                                       | Ветка                       | Статус | Открыт     | Закрыт     |
-|:--:|--------------------|----------------------------------------------------------------|------------------------------|:------:|:----------:|:----------:|
-| 00 | Bootstrap          | [`sprints/00-bootstrap.md`](./sprints/00-bootstrap.md)         | `main` (задним числом)       | Closed | 2026-04-25 | 2026-04-25 |
-| 01 | MVP                | [`sprints/01-mvp.md`](./sprints/01-mvp.md)                     | `main` (задним числом)       | Closed | 2026-04-25 | 2026-04-26 |
-| 02 | Docs Restructure   | [`sprints/02-docs-restructure.md`](./sprints/02-docs-restructure.md) | `feature/docs-restructure`   | Closed | 2026-04-26 | 2026-04-26 |
+| ID | Название              | Файл                                                                     | Ветка                          | Статус | Открыт     | Закрыт     |
+|:--:|-----------------------|------------------------------------------------------------------------------|--------------------------------|:------:|:----------:|:----------:|
+| 00 | Bootstrap             | [`sprints/00-bootstrap.md`](./sprints/00-bootstrap.md)                       | `main` (задним числом)         | Closed | 2026-04-25 | 2026-04-25 |
+| 01 | MVP                   | [`sprints/01-mvp.md`](./sprints/01-mvp.md)                                   | `main` (задним числом)         | Closed | 2026-04-25 | 2026-04-26 |
+| 02 | Docs Restructure      | [`sprints/02-docs-restructure.md`](./sprints/02-docs-restructure.md)         | `feature/docs-restructure`     | Closed | 2026-04-26 | 2026-04-26 |
+| 03 | Conversation Context  | [`sprints/03-conversation-context.md`](./sprints/03-conversation-context.md) | `feature/conversation-context` | Closed | 2026-04-26 | 2026-04-26 |
 
 ### Cancelled
 
@@ -186,11 +185,11 @@
 
 ## Сводная таблица состояния
 
-| Спринт                | Статус | Задач (ToDo / Progress / Done) | Файл                                       |
-|-----------------------|:------:|:------------------------------:|--------------------------------------------|
-| 00. Bootstrap         | Closed | 0 / 0 / 2                      | `sprints/00-bootstrap.md`                  |
-| 01. MVP               | Closed | 0 / 0 / 8                      | `sprints/01-mvp.md`                        |
-| 02. Docs Restructure  | Closed | 0 / 0 / 13                     | `sprints/02-docs-restructure.md`           |
-| 03. Conversation Context | Active | 11 / 0 / 0                  | `sprints/03-conversation-context.md`       |
+| Спринт                   | Статус | Задач (ToDo / Progress / Done) | Файл                                       |
+|--------------------------|:------:|:------------------------------:|--------------------------------------------|
+| 00. Bootstrap            | Closed | 0 / 0 / 2                      | `sprints/00-bootstrap.md`                  |
+| 01. MVP                  | Closed | 0 / 0 / 8                      | `sprints/01-mvp.md`                        |
+| 02. Docs Restructure     | Closed | 0 / 0 / 13                     | `sprints/02-docs-restructure.md`           |
+| 03. Conversation Context | Closed | 0 / 0 / 11                     | `sprints/03-conversation-context.md`       |
 
 > Таблицу обновлять одновременно с переходами статусов в файлах спринтов.
