@@ -166,7 +166,9 @@
 
 ### Активный
 
-> Пусто. Новый спринт открывается по ТЗ пользователя или по кандидатам из `_docs/roadmap.md`.
+| ID | Название              | Файл                                                                       | Ветка                          | Статус | Открыт     | Закрыт |
+|:--:|-----------------------|----------------------------------------------------------------------------|--------------------------------|:------:|:----------:|:------:|
+| 03 | Conversation Context  | [`sprints/03-conversation-context.md`](./sprints/03-conversation-context.md) | `feature/conversation-context` | Active | 2026-04-26 | —      |
 
 ### Закрытые
 
@@ -184,10 +186,11 @@
 
 ## Сводная таблица состояния
 
-| Спринт                | Статус | Задач (ToDo / Progress / Done) | Файл                                |
-|-----------------------|:------:|:------------------------------:|-------------------------------------|
-| 00. Bootstrap         | Closed | 0 / 0 / 2                      | `sprints/00-bootstrap.md`           |
-| 01. MVP               | Closed | 0 / 0 / 8                      | `sprints/01-mvp.md`                 |
-| 02. Docs Restructure  | Closed | 0 / 0 / 13                     | `sprints/02-docs-restructure.md`    |
+| Спринт                | Статус | Задач (ToDo / Progress / Done) | Файл                                       |
+|-----------------------|:------:|:------------------------------:|--------------------------------------------|
+| 00. Bootstrap         | Closed | 0 / 0 / 2                      | `sprints/00-bootstrap.md`                  |
+| 01. MVP               | Closed | 0 / 0 / 8                      | `sprints/01-mvp.md`                        |
+| 02. Docs Restructure  | Closed | 0 / 0 / 13                     | `sprints/02-docs-restructure.md`           |
+| 03. Conversation Context | Active | 11 / 0 / 0                  | `sprints/03-conversation-context.md`       |
 
 > Таблицу обновлять одновременно с переходами статусов в файлах спринтов.
