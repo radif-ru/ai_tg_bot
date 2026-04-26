@@ -451,7 +451,7 @@
 
 ### Задача 5.4. Обновить `_docs/commands.md` и `_docs/current-state.md`
 
-- **Статус:** Progress
+- **Статус:** Done
 - **Приоритет:** medium
 - **Объём:** S
 - **Зависит от:** Задача 4.1, 5.2
@@ -472,10 +472,11 @@
 
 #### Definition of Done
 
-- [ ] `_docs/commands.md` сводная таблица актуальна (`/reset` = ✅), описание команды и алгоритм «Произвольный текст» обновлены.
-- [ ] `_docs/current-state.md` §1 содержит ≥ 4 новых пункта про историю/суммаризацию/reset/логирование контекста.
-- [ ] `_docs/current-state.md` §2.1 закрыт и перенесён в §6.
-- [ ] `_docs/current-state.md` §3 не содержит формулировки «бот не хранит историю диалога» в смысле жёсткого запрета.
+- [x] `_docs/commands.md` сводная таблица актуальна (`/reset` = ✅, запись передвинута из опциональной в основную); описание команды (`clear` + `reset`) и алгоритм «Произвольный текст» (11 шагов: append user → build messages → log context → chat → append assistant → summarize → answer) обновлены; в `set_my_commands` добавлен `/reset`.
+- [x] `_docs/current-state.md` §1 содержит 4 новых пункта («История диалога», «Суммаризация», «Логирование контекста», «Команда `/reset`»); старые пункты обновлены (команды включают `/reset`, LLM-клиент упоминает `chat` + `estimate_tokens`).
+- [x] `_docs/current-state.md` §2.1 закрыт, §2.2–§2.8 перенумерованы в §2.1–§2.7, запись перенесена в §6 «История закрытий» с указанием спринта и коммита; `_docs/legacy.md` перенумерован согласно.
+- [x] `_docs/current-state.md` §3 переформулирован: `grep -F "бот не хранит историю" _docs/current-state.md` пусто; добавлены пункты про сборку контекста, `estimate_tokens = chars/4`, флаг `log_llm_context` и best-effort суммаризацию.
+- [n/a] Чисто-документационная задача. `pytest -q` прогнан перед коммитом — зелёный (103 теста).
 
 ---
 
@@ -540,7 +541,7 @@
 | 5.1 | Обновить `README.md`: «История диалога», «Суммаризация»               | high      | S     | Done   | Задачи 3.1, 4.1             |
 | 5.2 | Обновить `_docs/architecture.md` и `_docs/project-structure.md`       | high      | M     | Done   | Задача 3.1                  |
 | 5.3 | Обновить `_docs/requirements.md` (FR-3, CON-1, новые FR)              | high      | M     | Done   | Задачи 3.1, 4.1             |
-| 5.4 | Обновить `_docs/commands.md` и `_docs/current-state.md`               | medium    | S     | Progress | Задачи 4.1, 5.2           |
+| 5.4 | Обновить `_docs/commands.md` и `_docs/current-state.md`               | medium    | S     | Done   | Задачи 4.1, 5.2             |
 | 5.5 | Финальная приёмка спринта                                             | high      | S     | ToDo   | Задачи 5.1, 5.2, 5.3, 5.4   |
 
 ## 11. История изменений спринта
@@ -556,3 +557,4 @@
 - **2026-04-26** — закрыта задача 5.1: `README.md` обновлён — лидер с «без истории» переписан, добавлены разделы «История диалога» и «Суммаризация», в таблицу env добавлены 4 новые переменные с default'ами, в «Команды» и «Возможности» — `/reset` (коммит `docs(readme): document conversation history, summarization, /reset and new env vars`).
 - **2026-04-26** — закрыта задача 5.2: `_docs/architecture.md` переработан (схема, принципы, §3.2/3.4/3.5/3.8, flow §4, §7 расширяемость) под историю + chat-API + Summarizer; `_docs/project-structure.md` в дереве и таблице добавлены `conversation.py`, `summarizer.py` и их тесты (коммит `docs(architecture): document conversation history, summarization and chat() flow`).
 - **2026-04-26** — закрыта задача 5.3: `_docs/requirements.md` — FR-3 переформулирован, добавлены FR-13/14/15/16 (логирование контекста / лимит / суммаризация / `/reset`); CON-1 уточнён до «запрещена персистентная история, in-memory разрешена»; ASM-4 обновлено; таблицы §5/§6 пересчитаны (коммит `docs(requirements): restate FR-3, soften CON-1, add FR-13..16 for history and summarization`).
+- **2026-04-26** — закрыта задача 5.4: `_docs/commands.md` — `/reset` переведён в основную таблицу (`✅`), переписаны разделы «/reset» и «Произвольный текст» (11 шагов с историей и суммаризацией), `/reset` добавлен в `set_my_commands`; `_docs/current-state.md` — §1 дополнен 4 пунктами (история/суммаризация/лог контекста/`/reset`), §2.1 «нет /reset» перенесен в §6 и остальные §2.x перенумерованы, §3 переформулирован (in-memory state, `chars/4`, `log_llm_context`, best-effort суммаризация); `_docs/legacy.md` — список перенумерован (коммит `docs(current-state): close /reset legacy, update §1/§3 for conversation history and summarization; docs(commands): document /reset and new text-message flow`).
