@@ -375,7 +375,7 @@
 
 ### Задача 5.2. Обновить `_docs/architecture.md` и `_docs/project-structure.md`
 
-- **Статус:** Progress
+- **Статус:** Done
 - **Приоритет:** high
 - **Объём:** M
 - **Зависит от:** Задача 3.1
@@ -400,10 +400,11 @@
 
 #### Definition of Done
 
-- [ ] `_docs/architecture.md` обновлён по 6 пунктам выше; `grep -i "stateless" _docs/architecture.md` либо пусто, либо содержит уточнение про runtime-состояние, не противоречащее истории.
-- [ ] `_docs/architecture.md` упоминает `ConversationStore`, `Summarizer`, `chat(messages, …)`.
-- [ ] `_docs/project-structure.md` дерево и таблица актуальны.
-- [ ] `grep -E "запрещено ТЗ" _docs/architecture.md` пусто.
+- [x] `_docs/architecture.md` обновлён: §1 схема с ConversationStore + Summarizer; §2 «In-memory state, no persistence» вместо «stateless»; §3.2 дополнен 4 новыми env-переменными; §3.4 с `chat()` и `estimate_tokens()`; §3.5 «Per-user runtime-состояние» с ConversationStore; §3.8 с Summarizer; §4 flow с историей, llm_context-логом и суммаризацией; §7 без запрета «запрещено ТЗ».
+- [x] `_docs/architecture.md` явно упоминает `ConversationStore`, `Summarizer`, `chat(messages, …)`, `estimate_tokens`.
+- [x] `_docs/project-structure.md`: в дерево `app/services/` добавлены `conversation.py` и `summarizer.py`; в `tests/services/` — `test_conversation_store.py` и `test_summarizer.py`; в таблице «Назначение ключевых модулей» — строки для обоих; DI-принципы обновлены (5 ключей `dp[...]`).
+- [x] `grep -F "запрещено ТЗ" _docs/architecture.md` пусто (фраза убрана).
+- [n/a] Чисто-документационная задача. `pytest -q` прогнан перед коммитом — зелёный (103 теста).
 
 ---
 
@@ -535,7 +536,7 @@
 | 3.1 | Handler текста: контекст, логирование, `chat`, обновление истории     | high      | L     | Done   | Задачи 1.2, 2.1, 2.2        |
 | 4.1 | Команда `/reset` и обновление справочных текстов                      | medium    | S     | Done   | Задача 3.1                  |
 | 5.1 | Обновить `README.md`: «История диалога», «Суммаризация»               | high      | S     | Done   | Задачи 3.1, 4.1             |
-| 5.2 | Обновить `_docs/architecture.md` и `_docs/project-structure.md`       | high      | M     | Progress | Задача 3.1                |
+| 5.2 | Обновить `_docs/architecture.md` и `_docs/project-structure.md`       | high      | M     | Done   | Задача 3.1                  |
 | 5.3 | Обновить `_docs/requirements.md` (FR-3, CON-1, новые FR)              | high      | M     | ToDo   | Задачи 3.1, 4.1             |
 | 5.4 | Обновить `_docs/commands.md` и `_docs/current-state.md`               | medium    | S     | ToDo   | Задачи 4.1, 5.2             |
 | 5.5 | Финальная приёмка спринта                                             | high      | S     | ToDo   | Задачи 5.1, 5.2, 5.3, 5.4   |
@@ -551,3 +552,4 @@
 - **2026-04-26** — закрыта задача 3.1: handler текста переведён на `OllamaClient.chat` с контекстом `[system] + history`, добавлены обязательное логирование контекста (`messages=N tokens=K [payload=JSON]`) и условная суммаризация с защитой от падения; `app/main.py` прокидывает `ConversationStore` и `Summarizer` в DI; +7 новых тестов (коммит `feat(handlers): wire conversation history, context logging and summarization into text handler`).
 - **2026-04-26** — закрыта задача 4.1: добавлена команда `/reset` (очищает историю + сбрасывает model/prompt), зарегистрирована в `set_my_commands`, упомянута в `/start` и `/help`; +4 теста (коммит `feat(handlers): add /reset command to clear history and reset per-user settings`).
 - **2026-04-26** — закрыта задача 5.1: `README.md` обновлён — лидер с «без истории» переписан, добавлены разделы «История диалога» и «Суммаризация», в таблицу env добавлены 4 новые переменные с default'ами, в «Команды» и «Возможности» — `/reset` (коммит `docs(readme): document conversation history, summarization, /reset and new env vars`).
+- **2026-04-26** — закрыта задача 5.2: `_docs/architecture.md` переработан (схема, принципы, §3.2/3.4/3.5/3.8, flow §4, §7 расширяемость) под историю + chat-API + Summarizer; `_docs/project-structure.md` в дереве и таблице добавлены `conversation.py`, `summarizer.py` и их тесты (коммит `docs(architecture): document conversation history, summarization and chat() flow`).
