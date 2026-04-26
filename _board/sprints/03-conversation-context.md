@@ -187,7 +187,7 @@
 
 ### Задача 2.2. `Summarizer` — сжатие старой части диалога через LLM
 
-- **Статус:** ToDo
+- **Статус:** Progress
 - **Приоритет:** high
 - **Объём:** S
 - **Зависит от:** Задача 2.1
@@ -530,7 +530,7 @@
 | 1.1 | Расширить `Settings` и `.env.example` параметрами истории             | high      | S     | Done   | —                           |
 | 1.2 | `ConversationStore` — in-memory история per-user                      | high      | M     | Done   | Задача 1.1                  |
 | 2.1 | `OllamaClient.chat(messages, model)` поверх Ollama chat-API           | high      | M     | Done   | Задача 1.2                  |
-| 2.2 | `Summarizer` — сжатие старой части диалога через LLM                  | high      | S     | ToDo   | Задача 2.1                  |
+| 2.2 | `Summarizer` — сжатие старой части диалога через LLM                  | high      | S     | Progress | Задача 2.1                |
 | 3.1 | Handler текста: контекст, логирование, `chat`, обновление истории     | high      | L     | ToDo   | Задачи 1.2, 2.1, 2.2        |
 | 4.1 | Команда `/reset` и обновление справочных текстов                      | medium    | S     | ToDo   | Задача 3.1                  |
 | 5.1 | Обновить `README.md`: «История диалога», «Суммаризация»               | high      | S     | ToDo   | Задачи 3.1, 4.1             |
