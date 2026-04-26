@@ -166,16 +166,15 @@
 
 ### Активный
 
-| ID | Название | Файл | Ветка | Статус | Открыт | Закрыт |
-|:--:|----------|------|-------|:------:|:------:|:------:|
-| 02 | Docs Restructure | [`sprints/02-docs-restructure.md`](./sprints/02-docs-restructure.md) | `feature/docs-restructure` | Active | 2026-04-26 | — |
+> Пусто. Новый спринт открывается по ТЗ пользователя или по кандидатам из `_docs/roadmap.md`.
 
 ### Закрытые
 
-| ID | Название  | Файл                                             | Ветка                  | Статус | Открыт     | Закрыт     |
-|:--:|-----------|--------------------------------------------------|------------------------|:------:|:----------:|:----------:|
-| 00 | Bootstrap | [`sprints/00-bootstrap.md`](./sprints/00-bootstrap.md) | `main` (задним числом) | Closed | 2026-04-25 | 2026-04-25 |
-| 01 | MVP       | [`sprints/01-mvp.md`](./sprints/01-mvp.md)             | `main` (задним числом) | Closed | 2026-04-25 | 2026-04-26 |
+| ID | Название           | Файл                                                       | Ветка                       | Статус | Открыт     | Закрыт     |
+|:--:|--------------------|----------------------------------------------------------------|------------------------------|:------:|:----------:|:----------:|
+| 00 | Bootstrap          | [`sprints/00-bootstrap.md`](./sprints/00-bootstrap.md)         | `main` (задним числом)       | Closed | 2026-04-25 | 2026-04-25 |
+| 01 | MVP                | [`sprints/01-mvp.md`](./sprints/01-mvp.md)                     | `main` (задним числом)       | Closed | 2026-04-25 | 2026-04-26 |
+| 02 | Docs Restructure   | [`sprints/02-docs-restructure.md`](./sprints/02-docs-restructure.md) | `feature/docs-restructure`   | Closed | 2026-04-26 | 2026-04-26 |
 
 ### Cancelled
 
@@ -189,6 +188,6 @@
 |-----------------------|:------:|:------------------------------:|-------------------------------------|
 | 00. Bootstrap         | Closed | 0 / 0 / 2                      | `sprints/00-bootstrap.md`           |
 | 01. MVP               | Closed | 0 / 0 / 8                      | `sprints/01-mvp.md`                 |
-| 02. Docs Restructure  | Active | 0 / 1 / 0                      | `sprints/02-docs-restructure.md`    |
+| 02. Docs Restructure  | Closed | 0 / 0 / 13                     | `sprints/02-docs-restructure.md`    |
 
 > Таблицу обновлять одновременно с переходами статусов в файлах спринтов.
