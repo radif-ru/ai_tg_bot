@@ -286,7 +286,7 @@
 
 ### Задача 4.1. Команда `/reset` и обновление справочных текстов
 
-- **Статус:** Progress
+- **Статус:** Done
 - **Приоритет:** medium
 - **Объём:** S
 - **Зависит от:** Задача 3.1
@@ -321,10 +321,10 @@
 
 #### Definition of Done
 
-- [ ] `/reset` зарегистрирован, корректно делает оба сброса.
-- [ ] В UI Telegram (BotFather menu) команда видна (ручная проверка).
-- [ ] Тексты `/start` и `/help` упоминают `/reset`.
-- [ ] `pytest tests/handlers/test_commands.py -q` зелёный, добавлены ≥ 2 теста на `/reset`.
+- [x] `/reset` зарегистрирован, корректно делает оба сброса (`conversation.clear` + `registry.reset`).
+- [x] В `app/main.py::set_my_commands` добавлен `BotCommand("reset", ...)`; реальная проверка BotFather UI — в задаче 5.5.
+- [x] Тексты `/start` и `/help` упоминают `/reset` (покрыто тестами `test_start_mentions_reset_command`, `test_help_mentions_reset_command`).
+- [x] `pytest tests/handlers/test_commands.py -q` зелёный, +4 теста на `/reset` (mock store + registry, реальные store + registry, /start упоминает, /help упоминает).
 
 ---
 
@@ -532,7 +532,7 @@
 | 2.1 | `OllamaClient.chat(messages, model)` поверх Ollama chat-API           | high      | M     | Done   | Задача 1.2                  |
 | 2.2 | `Summarizer` — сжатие старой части диалога через LLM                  | high      | S     | Done   | Задача 2.1                  |
 | 3.1 | Handler текста: контекст, логирование, `chat`, обновление истории     | high      | L     | Done   | Задачи 1.2, 2.1, 2.2        |
-| 4.1 | Команда `/reset` и обновление справочных текстов                      | medium    | S     | Progress | Задача 3.1                |
+| 4.1 | Команда `/reset` и обновление справочных текстов                      | medium    | S     | Done   | Задача 3.1                  |
 | 5.1 | Обновить `README.md`: «История диалога», «Суммаризация»               | high      | S     | ToDo   | Задачи 3.1, 4.1             |
 | 5.2 | Обновить `_docs/architecture.md` и `_docs/project-structure.md`       | high      | M     | ToDo   | Задача 3.1                  |
 | 5.3 | Обновить `_docs/requirements.md` (FR-3, CON-1, новые FR)              | high      | M     | ToDo   | Задачи 3.1, 4.1             |
@@ -548,3 +548,4 @@
 - **2026-04-26** — закрыта задача 2.1: в `OllamaClient` добавлен метод `chat(messages, model)` с идентичным маппингом ошибок `generate()`; функция уровня модуля `estimate_tokens(value)`; +11 тестов (коммит `feat(llm): add OllamaClient.chat(messages) and estimate_tokens helper`).
 - **2026-04-26** — закрыта задача 2.2: добавлен `app/services/summarizer.py::Summarizer` (обёртка над `OllamaClient.chat` для сжатия истории) + 5 unit-тестов (коммит `feat(services): add Summarizer for compressing dialog history via LLM`).
 - **2026-04-26** — закрыта задача 3.1: handler текста переведён на `OllamaClient.chat` с контекстом `[system] + history`, добавлены обязательное логирование контекста (`messages=N tokens=K [payload=JSON]`) и условная суммаризация с защитой от падения; `app/main.py` прокидывает `ConversationStore` и `Summarizer` в DI; +7 новых тестов (коммит `feat(handlers): wire conversation history, context logging and summarization into text handler`).
+- **2026-04-26** — закрыта задача 4.1: добавлена команда `/reset` (очищает историю + сбрасывает model/prompt), зарегистрирована в `set_my_commands`, упомянута в `/start` и `/help`; +4 теста (коммит `feat(handlers): add /reset command to clear history and reset per-user settings`).
