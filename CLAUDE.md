@@ -1,65 +1,70 @@
 # CLAUDE.md
 
-Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
+Поведенческие гайдлайны для LLM-агента, чтобы сократить типовые ошибки в коде. При необходимости совмещаются с проектными правилами из `_docs/instructions.md`.
 
-**Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
+**Компромисс:** эти правила смещают баланс в сторону осторожности, а не скорости. Для тривиальных задач — действуй по здравому смыслу.
 
-## 1. Think Before Coding
+## 1. Сначала думай, потом кодь
 
-**Don't assume. Don't hide confusion. Surface tradeoffs.**
+**Не додумывай. Не прячь сомнения. Озвучивай развилки.**
 
-Before implementing:
-- State your assumptions explicitly. If uncertain, ask.
-- If multiple interpretations exist, present them - don't pick silently.
-- If a simpler approach exists, say so. Push back when warranted.
-- If something is unclear, stop. Name what's confusing. Ask.
+Перед реализацией:
 
-## 2. Simplicity First
+- Явно сформулируй свои допущения. Если не уверен — спроси.
+- Если возможно несколько интерпретаций задачи — назови их, не выбирай молча.
+- Если есть более простой способ — скажи об этом. Возражай, когда это оправдано.
+- Если что-то непонятно — остановись, назови, что именно непонятно, и задай вопрос.
 
-**Minimum code that solves the problem. Nothing speculative.**
+## 2. Минимализм
 
-- No features beyond what was asked.
-- No abstractions for single-use code.
-- No "flexibility" or "configurability" that wasn't requested.
-- No error handling for impossible scenarios.
-- If you write 200 lines and it could be 50, rewrite it.
+**Минимум кода, решающего задачу. Никаких спекуляций.**
 
-Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
+- Никаких фич, которых не просили.
+- Никаких абстракций ради одного использования.
+- Никакой «гибкости» и «конфигурируемости», которых не просили.
+- Никакой обработки невозможных сценариев.
+- Если получилось 200 строк, а хватило бы 50 — перепиши.
 
-## 3. Surgical Changes
+Спроси себя: «Сеньор сказал бы, что это переусложнено?» Если да — упрости.
 
-**Touch only what you must. Clean up only your own mess.**
+## 3. Хирургические правки
 
-When editing existing code:
-- Don't "improve" adjacent code, comments, or formatting.
-- Don't refactor things that aren't broken.
-- Match existing style, even if you'd do it differently.
-- If you notice unrelated dead code, mention it - don't delete it.
+**Трогай только то, что необходимо. Прибирай только за собой.**
 
-When your changes create orphans:
-- Remove imports/variables/functions that YOUR changes made unused.
-- Don't remove pre-existing dead code unless asked.
+При правке существующего кода:
 
-The test: Every changed line should trace directly to the user's request.
+- Не «улучшай» соседний код, комментарии или форматирование.
+- Не рефактори то, что не сломано.
+- Сохраняй существующий стиль кода, даже если ты бы написал иначе.
+- Заметил мёртвый код, не относящийся к задаче, — упомяни в коммите/обсуждении, **не удаляй**.
 
-## 4. Goal-Driven Execution
+Когда твои правки создают «осиротевший» код:
 
-**Define success criteria. Loop until verified.**
+- Удали импорты/переменные/функции, которые стали не нужны **из-за твоих** изменений.
+- Не удаляй ранее существовавший мёртвый код, если об этом не просили.
 
-Transform tasks into verifiable goals:
-- "Add validation" → "Write tests for invalid inputs, then make them pass"
-- "Fix the bug" → "Write a test that reproduces it, then make it pass"
-- "Refactor X" → "Ensure tests pass before and after"
+Проверка: каждая изменённая строка должна напрямую соответствовать запросу пользователя.
 
-For multi-step tasks, state a brief plan:
+## 4. Выполнение от цели
+
+**Определяй критерий успеха. Итеративно проверяй, пока не достигнешь его.**
+
+Превращай задачу в проверяемую цель:
+
+- «Добавь валидацию» → «Напиши тесты на невалидный ввод, потом сделай их зелёными».
+- «Почини баг» → «Напиши тест, воспроизводящий баг, потом сделай его зелёным».
+- «Зарефактори X» → «Тесты зелёные до и после».
+
+Для многошаговых задач сформулируй короткий план:
+
 ```
-1. [Step] → verify: [check]
-2. [Step] → verify: [check]
-3. [Step] → verify: [check]
+1. [Шаг] → проверка: [как убедиться]
+2. [Шаг] → проверка: [как убедиться]
+3. [Шаг] → проверка: [как убедиться]
 ```
 
-Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
+Сильный критерий успеха позволяет работать независимо. Слабый («чтобы заработало») приводит к постоянным уточнениям.
 
 ---
 
-**These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
+**Признаки того, что эти гайдлайны работают:** меньше лишних изменений в diff'ах, меньше переписываний из-за переусложнения, уточняющие вопросы появляются **до** реализации, а не после ошибок.

@@ -22,7 +22,7 @@ def test_setup_logging_creates_file_and_dir(
     settings = Settings(_env_file=None)
     setup_logging(settings)
 
-    logger = logging.getLogger("ai_tg_bot.test")
+    logger = logging.getLogger("ai-tg-bot.test")
     logger.info("hello-from-test")
     for handler in logging.getLogger().handlers:
         handler.flush()
@@ -49,7 +49,7 @@ def test_setup_logging_does_not_leak_token(
     settings = Settings(_env_file=None)
     setup_logging(settings)
 
-    logger = logging.getLogger("ai_tg_bot.secret_probe")
+    logger = logging.getLogger("ai-tg-bot.secret_probe")
     logger.debug("settings=%s", settings)
     logger.debug("repr=%r", settings)
     for handler in logging.getLogger().handlers:
